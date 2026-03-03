@@ -17,7 +17,7 @@ import com.curso.rest.dto.RespuestaError;
 import com.curso.rest.dto.Zasca;
 
 //@ControllerAdvice
-@ControllerAdvice( basePackages = "com.curso.rest")
+//@ControllerAdvice( basePackages = "com.curso.rest")
 public class ControladorExcepciones {
 
 	public ControladorExcepciones() {

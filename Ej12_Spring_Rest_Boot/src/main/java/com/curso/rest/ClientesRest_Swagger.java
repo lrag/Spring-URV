@@ -3,7 +3,7 @@ package com.curso.rest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 //
 //
-// http://localhost:8080/Ej12_Spring_Rest/v3/api-docs.yaml
+// http://localhost:8090/v3/api-docs.yaml
+// http://localhost:8090/swagger-ui/index.html
 //
 //
 
@@ -46,7 +47,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 		path = "/clientes",
 		produces = { "application/json", "application/xml" }
 	)
-@Tag(name = "Cliente", description = "API Rest para la gestión de clientes")
+@Tag(name = "Clientes", description = "API Rest para la gestión de clientes")
 public class ClientesRest_Swagger {
 
 	private GestorClientes gestorClientes;
@@ -61,7 +62,8 @@ public class ClientesRest_Swagger {
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "201", description = "Cliente creado con éxito", 
 					 content = @Content(schema = @Schema(implementation = RespuestaOk.class))),
-		@ApiResponse(responseCode = "400", description = "Datos de entrada inválidos", content = @Content)
+		@ApiResponse(responseCode = "400", description = "Datos de entrada inválidos", 
+				     content = @Content(schema = @Schema(implementation = RespuestaError.class)))
 	})
 	public ResponseEntity<Respuesta> insertar(@Valid @RequestBody ClienteDto clienteDto) throws ClienteException {
 		Cliente cliente = clienteDto.asCliente();

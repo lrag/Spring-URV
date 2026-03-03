@@ -1,10 +1,8 @@
 package com.curso.rest;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-import javax.validation.Validator;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.curso.modelo.entidad.Cliente;
 import com.curso.modelo.negocio.GestorClientes;
@@ -27,6 +24,11 @@ import com.curso.rest.dto.Respuesta;
 import com.curso.rest.dto.RespuestaError;
 import com.curso.rest.dto.RespuestaOk;
 import com.curso.rest.dto.Zasca;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 /*
 GET    /clientes
@@ -82,6 +84,10 @@ public class ClientesRest_Sin_Exception_Handlers {
 		)
 	//@ResponseBody
 	public ResponseEntity<Respuesta> insertar(@Valid @RequestBody ClienteDto clienteDto, BindingResult result) {
+		
+		//Validator validador = Validation.buildDefaultValidatorFactory().getValidator();
+		//Set<ConstraintViolation<ClienteDto>> errores = validador.validate(clienteDto);
+		//errores.stream().forEach( cv -> System.out.println(cv.getPropertyPath()+", "+cv.getMessage() ));
 		
 		if(result.hasErrors()) {
 			Zasca error = new Zasca("400", "Datos inválidos");
